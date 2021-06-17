@@ -80,8 +80,6 @@ class Search {
         let formattedIds = bookIds.split(" ");
         let matchingIds = new Set(); 
 
-        console.log(formattedIds);
-
         if(bookIds === 'quit') {
             this.menu.mainMenu(); 
         } else if(formattedIds.length > 0) {
@@ -93,8 +91,11 @@ class Search {
                 }
             }
 
+            console.log(matchingIds); // {0, 1, 2}
+
             if(Array.from(matchingIds).length > 0) {
                 for(let id of matchingIds) {
+                    console.log(id);
                     this.collection.addBook(this.results[id]);
                 }
                 console.log("\nAdded books to your list, return to main menu to see your list\n")
@@ -103,8 +104,6 @@ class Search {
                 console.log("\nThe id(s) you provided did not match the search results.\n")
                 this.saveBook(); 
             }
-
-
         }
 
     }
