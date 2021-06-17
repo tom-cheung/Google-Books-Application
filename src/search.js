@@ -10,10 +10,7 @@ class Search {
         this.results = []; 
         this.collection = BookCollection;
         this.menu = Menu; 
-        this.error = {
-            errorStatus: false,  
-            errorMessage: '', 
-        }
+ 
     }
 
     requestInput(question, choices=[]) {
@@ -47,6 +44,7 @@ class Search {
                         let book = searchResults.data.items[i];
                         if(book) this.results.push(book);
                     }
+                    console.log('hi from 50')
                     this.displayResults(); 
                     this.saveBook(); 
                 } else {
@@ -82,9 +80,12 @@ class Search {
         let formattedIds = bookIds.split(" ");
         let matchingIds = new Set(); 
 
+        console.log(formattedIds);
+
         if(bookIds === 'quit') {
             this.menu.mainMenu(); 
         } else if(formattedIds.length > 0) {
+
             for(let id of formattedIds) {
                 let intId = parseInt(id) - 1;
                 if(intId >= 0 && intId < this.results.length ) {

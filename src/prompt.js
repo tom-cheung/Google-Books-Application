@@ -1,4 +1,3 @@
-const prompt = require('prompt-sync')(); 
 const myModules = require('../util/modules');
 
 class Prompt {

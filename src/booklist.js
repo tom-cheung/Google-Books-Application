@@ -23,7 +23,7 @@ class BookCollection {
                 console.log(`\n----------\n`)
 
                 let newPrompt = new Prompt(); 
-                let input = newPrompt.promptUser("To return to the main menu press return.")
+                newPrompt.promptUser("To return to the main menu press return.")
                 this.menu.mainMenu(); 
             }
         } else {
