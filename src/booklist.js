@@ -1,5 +1,6 @@
 // add books, remove books 
 // view books
+const Prompt = require('./prompt'); 
 
 class BookCollection {
     constructor(Menu) {
@@ -20,9 +21,13 @@ class BookCollection {
                 console.log(`Author(s): ${authors ? (authors.length > 0 ? authors.join(", ") : author[0]) : 'unavailable'}`)
                 console.log(`Publisher: ${publisher ? publisher : 'unavailable'}`)
                 console.log(`\n----------\n`)
+
+                let newPrompt = new Prompt(); 
+                let input = newPrompt.promptUser("To return to the main menu press return.")
+                this.menu.mainMenu(); 
             }
         } else {
-            console.log('Your list is empty.')
+            console.log('Your list is empty.\n')
             this.menu.mainMenu(); 
         }
 

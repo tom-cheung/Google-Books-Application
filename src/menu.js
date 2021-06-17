@@ -18,13 +18,13 @@ class Menu {
             let newSearch = new Search(this.bookCollection, this); 
             console.log("----------");
             newSearch.performSearch(); 
-            console.log('=>>> ', newSearch.results.length);
         } else if(this.currentChoice == 2) {
             this.bookCollection.viewBooks(); 
         } else if(this.currentChoice == 3) {
+            console.log('Goodbye!\n')
             return; 
         } else {
-            console.log("Input not recognized.")
+            console.log("Input not recognized.\n")
             this.mainMenu(); 
         }
     }

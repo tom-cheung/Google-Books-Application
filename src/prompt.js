@@ -6,7 +6,7 @@ class Prompt {
         this.userInput = ''; 
     }
     
-    promptUser(inquiry, choices) {
+    promptUser(inquiry, choices=[]) {
         let input = myModules.multiLinePrompt(inquiry + ((choices.length === 0 ? `\n` : `\n${choices.join('\n')}\n`)))
         this.userInput = input.trim(); 
         return this.userInput; 
