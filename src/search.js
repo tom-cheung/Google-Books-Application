@@ -4,11 +4,12 @@ const Prompt = require('./prompt');
 const APIKEY = 'AIzaSyDwWl6oDb31K5tHyKcmmlNNHe1Njh4Relg';
 
 class Search {
-    constructor(BookCollection) {
+    constructor(BookCollection, Menu) {
         this.titleInput = ''; 
         this.authorInput = ''; 
         this.results = []; 
-        this.collection = BookCollection; 
+        this.collection = BookCollection;
+        this.menu = Menu; 
         this.error = {
             errorStatus: false,  
             errorMessage: '', 
@@ -41,6 +42,7 @@ class Search {
 
             if(status === 200) {
                 if(searchResults.data.totalItems > 0) {
+                    // only save up to 5 results 
                     for(let i = 0; i < 5; i++) {
                         let book = searchResults.data.items[i];
                         if(book) this.results.push(book);
@@ -76,7 +78,7 @@ class Search {
     saveBook() {
         let newPrompt = new Prompt();
         let bookIds = newPrompt("Enter the ID of the books you want to save - seperate by spaces i.e. 1 2 3 OR quit to return to the main menu"); 
-        
+
     }
 }
 

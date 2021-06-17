@@ -2,8 +2,9 @@
 // view books
 
 class BookCollection {
-    constructor() {
+    constructor(Menu) {
         this.collection = []; 
+        this.menu = Menu; 
     }
 
     addBook(book) {
@@ -22,6 +23,7 @@ class BookCollection {
             }
         } else {
             console.log('Your list is empty.')
+            this.menu.mainMenu(); 
         }
 
     }
