@@ -22,7 +22,6 @@ class Search {
     }
 
     performSearch() {
-
         console.log('Please provide either a title or author to search by:')
         this.titleInput = this.requestInput('Search by book title:');
         this.authorInput = this.requestInput('Search by author:');
@@ -42,9 +41,11 @@ class Search {
 
             if(status === 200) {
                 if(searchResults.data.totalItems > 0) {
-                    this.results = searchResults.data.items
+                    for(let i = 0; i < 5; i++) {
+                        let book = searchResults.data.items[i];
+                        if(book) this.results.push(book);
+                    }
                     this.displayResults(); 
-
                 } else {
                     console.log('nothing found')
                 }
@@ -61,7 +62,7 @@ class Search {
         if(this.results.length > 0) {
             for(let i = 0; i < this.results.length; i++) {
                 let {volumeInfo: {title, authors, publisher}} = this.results[i];
-                console.log(`Result [${i + 1}]`);
+                console.log(`Book ID: [${i + 1}]`);
                 console.log(`Title: ${title ? title : 'unavailable'}`);
                 console.log(`Author(s): ${authors ? (authors.length > 0 ? authors.join(", ") : author[0]) : 'unavailable'}`)
                 console.log(`Publisher: ${publisher ? publisher : 'unavailable'}`)
@@ -70,6 +71,12 @@ class Search {
         } else {
             console.log('no results to display')
         }
+    }
+
+    saveBook() {
+        let newPrompt = new Prompt();
+        let bookIds = newPrompt("Enter the ID of the books you want to save - seperate by spaces i.e. 1 2 3 OR quit to return to the main menu"); 
+        
     }
 }
 
