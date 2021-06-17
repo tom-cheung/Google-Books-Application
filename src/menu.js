@@ -32,7 +32,5 @@ class Menu {
 
 }
 
-let newMenu = new Menu(); 
-
-newMenu.mainMenu();
+module.exports = Menu; 
 

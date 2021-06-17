@@ -20,7 +20,7 @@ class Search {
     }
 
     performSearch() {
-        console.log('Please provide either a title or author to search by:')
+        console.log('Please provide a title and/or author to search by:')
         this.titleInput = this.requestInput('Search by book title:');
         this.authorInput = this.requestInput('Search by author:');
 
@@ -37,8 +37,6 @@ class Search {
             let searchResults = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title === '' ? '' : title}${author === '' ? '' : '+inauthor:' + author}&key=${APIKEY}`)
             let status = searchResults.status; 
 
-            console.log(searchResults.data.items)
-
             if(status === 200) {
                 if(searchResults.data.totalItems > 0) {
                     // only save up to 5 results 
@@ -46,7 +44,8 @@ class Search {
                         let book = searchResults.data.items[i];
                         if(book) this.results.push(book);
                     }
-                    console.log('hi from 50')
+
+                    console.log('\n**********Your search results**********\n');
                     this.displayResults(); 
                     this.saveBook(); 
                 } else {
@@ -78,7 +77,7 @@ class Search {
 
     saveBook() {
         let newPrompt = new Prompt();
-        let bookIds = newPrompt.promptUser("Enter the result # of the books you want to save, i.e. 1 2 3, OR quit to return to the main menu"); 
+        let bookIds = newPrompt.promptUser("Enter the result # of the books you want to save, i.e. 1 2 3, OR 'quit' to return to the main menu to view your list or perform a new search."); 
         let formattedIds = bookIds.split(" ");
         let matchingIds = new Set(); 
 
@@ -106,7 +105,7 @@ class Search {
                 console.log("\nAdded books to your list, return to main menu to see your list\n")
                 this.saveBook(); 
             } else {
-                console.log("\nThe id(s) you provided did not match the search results.\n")
+                console.log("\nThe result #'s you provided did not match the search results.\n")
                 this.saveBook(); 
             }
         }
