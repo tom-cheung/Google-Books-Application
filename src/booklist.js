@@ -4,17 +4,16 @@ const Prompt = require('./prompt');
 
 class BookCollection {
     constructor(Menu) {
-        this.collection = new Set(); 
+        this.collection = {}; 
         this.menu = Menu; 
     }
 
     addBook(book) {
-        book ? this.collection.add(book) : console.log("Could not add this book");
+        book ? this.collection[book.id] = book : console.log("Could not add this book");
     };
 
     viewBooks() {
-
-        let allBooks = Array.from(this.collection); 
+        let allBooks = Object.values(this.collection)
         if(allBooks.length > 0) {
             for(let i = 0; i < allBooks.length; i++) {
                 let {volumeInfo: {title, authors, publisher}} = allBooks[i];
@@ -23,8 +22,6 @@ class BookCollection {
                 console.log(`Author(s): ${authors ? (authors.length > 0 ? authors.join(", ") : author[0]) : 'unavailable'}`)
                 console.log(`Publisher: ${publisher ? publisher : 'unavailable'}`)
                 console.log(`\n----------\n`)
-
-                
             }
             let newPrompt = new Prompt(); 
             newPrompt.promptUser("To return to the main menu press return.")

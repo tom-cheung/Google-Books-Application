@@ -8,7 +8,7 @@ class Search {
         this.titleInput = ''; 
         this.authorInput = ''; 
         this.results = []; 
-        this.collection = BookCollection;
+        this.usersBooks = BookCollection;
         this.menu = Menu; 
  
     }
@@ -37,6 +37,8 @@ class Search {
             let searchResults = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title === '' ? '' : title}${author === '' ? '' : '+inauthor:' + author}&key=${APIKEY}`)
             let status = searchResults.status; 
 
+            console.log(searchResults.data.items)
+
             if(status === 200) {
                 if(searchResults.data.totalItems > 0) {
                     // only save up to 5 results 
@@ -63,7 +65,7 @@ class Search {
         if(this.results.length > 0) {
             for(let i = 0; i < this.results.length; i++) {
                 let {volumeInfo: {title, authors, publisher}} = this.results[i];
-                console.log(`Book ID: [${i + 1}]`);
+                console.log(`Result: [${i + 1}]`);
                 console.log(`Title: ${title ? title : 'unavailable'}`);
                 console.log(`Author(s): ${authors ? (authors.length > 0 ? authors.join(", ") : author[0]) : 'unavailable'}`)
                 console.log(`Publisher: ${publisher ? publisher : 'unavailable'}`)
@@ -76,7 +78,7 @@ class Search {
 
     saveBook() {
         let newPrompt = new Prompt();
-        let bookIds = newPrompt.promptUser("Enter the ID of books you want to save, i.e. 1 2 3, OR quit to return to the main menu"); 
+        let bookIds = newPrompt.promptUser("Enter the result # of the books you want to save, i.e. 1 2 3, OR quit to return to the main menu"); 
         let formattedIds = bookIds.split(" ");
         let matchingIds = new Set(); 
 
@@ -91,12 +93,15 @@ class Search {
                 }
             }
 
-            console.log(matchingIds); // {0, 1, 2}
 
             if(Array.from(matchingIds).length > 0) {
                 for(let id of matchingIds) {
-                    console.log(id);
-                    this.collection.addBook(this.results[id]);
+                    if(this.usersBooks.collection[this.results[id].id]) {
+                        console.log(`${this.results[id].volumeInfo.title} has already been saved.`)
+                    } else {
+                        this.usersBooks.addBook(this.results[id]);
+                    }
+                    
                 }
                 console.log("\nAdded books to your list, return to main menu to see your list\n")
                 this.saveBook(); 
