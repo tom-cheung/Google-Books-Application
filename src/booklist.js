@@ -17,7 +17,7 @@ class BookCollection {
         if(allBooks.length > 0) {
             for(let i = 0; i < allBooks.length; i++) {
                 let {volumeInfo: {title, authors, publisher}} = allBooks[i];
-                console.log(`Result [${i}]`);
+                console.log(`Result [${i + 1}]`);
                 console.log(`Title: ${title ? title : 'unavailable'}`);
                 console.log(`Author(s): ${authors ? (authors.length > 0 ? authors.join(", ") : author[0]) : 'unavailable'}`)
                 console.log(`Publisher: ${publisher ? publisher : 'unavailable'}`)

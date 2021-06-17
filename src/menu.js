@@ -36,4 +36,3 @@ let newMenu = new Menu();
 
 newMenu.mainMenu();
 
-// the api call is asynchronous, so be careful with how you are depending on the results;  
