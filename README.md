@@ -23,6 +23,6 @@ You will be prompted with the following,
 
 ## Main Menu 
 
-<img src="./img/main_menu.PNG" width="852" height="480">
+<img src="./img/main_menu.PNG" width="300" height="480">
 
 
