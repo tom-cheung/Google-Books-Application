@@ -19,9 +19,13 @@ This applications requires Node.
 
 Clone this repository https://github.com/tom-cheung/Google-Books-Application.git, CD into the main file, run `npm install` to install all dependencies, lastly run `npm run start`.
 
-You will be prompted with the following, 
+Users will be prompted with the following, 
 
 ## Main Menu 
+
+<img src="./img/main_menu.PNG" width="800" height="200">
+
+An input of 1 brings up the search menu, where the user is prompted for `title` and/or `author` input. Input must be provided for at least one of the criterias. 
 
 <img src="./img/main_menu.PNG" width="800" height="200">
 
