@@ -17,7 +17,7 @@ This command line application allows users to interact with the Google Books API
 
 This applications requires Node. 
 
-Clone this repository https://github.com/tom-cheung/Google-Books-Application.git, CD into the main file, run `npm install` to install all dependencies, lastly run `npm run start`.
+Clone this repository https://github.com/tom-cheung/Google-Books-Application.git, CD into the main file, run `npm install` to install all dependencies, lastly run `npm run start`. Tests can be run with `npm run start-tests` from the root directory. 
 
 Users will be prompted with the following, 
 
