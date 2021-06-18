@@ -33,4 +33,7 @@ Once input is provided, the application queries the Google Books API and returns
 
 <img src="./img/search_results.PNG" width="900" height="900">
 
+Once the results are shown, the user is prompted to either enter the `result #` of the book(s) they want to save, or `quit` to return to the main menu. If the user wants to save a book they will need to enter the result #'s seperated by spaces. 
+
+<img src="./img/save_books.PNG" width="900" height="200">
 
