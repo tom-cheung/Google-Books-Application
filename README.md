@@ -1,6 +1,6 @@
 # Google Books Application 
 
-This command line application allows you to interact with the Google Books API by searching for books based upon title and author inputs. The application will display a list of 5 results from each search, and allow users to save results to a reading list. The information displayed for each search contains a book's title, author, and publisher. If any of these fields are unavailable from the Google Books API, the field will indicate unavailable. 
+This command line application allows users to interact with the Google Books API by searching for books based upon `title` and `author` inputs. The application will display a list of 5 results from each search, and allow users to save results to a reading list. The information displayed for each search contains a book's title, author, and publisher. If any of these fields are unavailable from the Google Books API, the field will indicate unavailable. 
 
 ## Environment and Dependencies 
 
