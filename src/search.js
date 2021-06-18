@@ -50,6 +50,7 @@ class Search {
                     this.saveBook(); 
                 } else {
                     console.log('nothing found')
+                    this.performSearch(); 
                 }
             } else {
                 console.log('could not reach Google Books API!!!')
@@ -77,8 +78,8 @@ class Search {
 
     saveBook() {
         let newPrompt = new Prompt();
-        let bookIds = newPrompt.promptUser("Enter the result # of the books you want to save, i.e. 1 2 3, OR 'quit' to return to the main menu to view your list or perform a new search."); 
-        let formattedIds = bookIds.split(" ");
+        let bookIds = newPrompt.promptUser('Enter the result # of the books you want to save, i.e. 1 2 3, OR \'quit\' to return to the main menu to view your list or perform a new search.'); 
+        let formattedIds = bookIds.split(' ');
         let matchingIds = new Set(); 
 
         if(bookIds === 'quit') {
@@ -102,10 +103,10 @@ class Search {
                     }
                     
                 }
-                console.log("\nAdded books to your list, return to main menu to see your list\n")
+                console.log('\nAdded books to your list, return to main menu to see your list\n')
                 this.saveBook(); 
             } else {
-                console.log("\nThe result #'s you provided did not match the search results.\n")
+                console.log('\nThe result #\'s you provided did not match the search results.\n')
                 this.saveBook(); 
             }
         }

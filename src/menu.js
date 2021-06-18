@@ -12,11 +12,11 @@ class Menu {
     mainMenu() {
         console.log('Welcome to Tom\'s Google Book\'s Application!')
         let newPrompt = new Prompt(); 
-        this.currentChoice = newPrompt.promptUser("Please choose an option from below (enter 1, 2, or 3):", this.menuChoices); 
+        this.currentChoice = newPrompt.promptUser('Please choose an option from below (enter 1, 2, or 3):', this.menuChoices); 
         
         if(this.currentChoice == 1) {
             let newSearch = new Search(this.newList, this); 
-            console.log("----------");
+            console.log('----------');
             newSearch.performSearch(); 
         } else if(this.currentChoice == 2) {
             this.newList.viewBooks(); 
@@ -24,7 +24,7 @@ class Menu {
             console.log('Goodbye!\n')
             return; 
         } else {
-            console.log("Input not recognized.\n")
+            console.log('Input not recognized.\n')
             this.mainMenu(); 
         }
     }

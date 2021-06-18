@@ -9,7 +9,7 @@ class ReadingList {
     }
 
     addBook(book) {
-        book ? this.collection[book.id] = book : console.log("Could not add this book");
+        book ? this.collection[book.id] = book : console.log('Could not add this book');
     };
 
     viewBooks() {
@@ -24,7 +24,7 @@ class ReadingList {
                 console.log(`\n----------\n`)
             }
             let newPrompt = new Prompt(); 
-            newPrompt.promptUser("To return to the main menu press return.")
+            newPrompt.promptUser('To return to the main menu press return.')
             this.menu.mainMenu(); 
         } else {
             console.log('Your list is empty.\n')
