@@ -1,5 +1,3 @@
-// add books, remove books 
-// view books
 const Prompt = require('./prompt'); 
 
 class ReadingList {
