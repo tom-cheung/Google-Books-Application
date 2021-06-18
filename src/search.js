@@ -4,11 +4,11 @@ const Prompt = require('./prompt');
 const APIKEY = 'AIzaSyDwWl6oDb31K5tHyKcmmlNNHe1Njh4Relg';
 
 class Search {
-    constructor(BookCollection, Menu) {
+    constructor(ReadingList, Menu) {
         this.titleInput = ''; 
         this.authorInput = ''; 
         this.results = []; 
-        this.usersBooks = BookCollection;
+        this.readingList = ReadingList;
         this.menu = Menu; 
  
     }
@@ -32,7 +32,7 @@ class Search {
         }
     }
 
-    async searchBook(title, author) {
+    async searchBook(title='', author='') {
         try {
             let searchResults = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title === '' ? '' : title}${author === '' ? '' : '+inauthor:' + author}&key=${APIKEY}`)
             let status = searchResults.status; 
@@ -95,10 +95,10 @@ class Search {
 
             if(Array.from(matchingIds).length > 0) {
                 for(let id of matchingIds) {
-                    if(this.usersBooks.collection[this.results[id].id]) {
+                    if(this.readingList.collection[this.results[id].id]) {
                         console.log(`${this.results[id].volumeInfo.title} has already been saved.`)
                     } else {
-                        this.usersBooks.addBook(this.results[id]);
+                        this.readingList.addBook(this.results[id]);
                     }
                     
                 }

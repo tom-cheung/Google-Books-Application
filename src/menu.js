@@ -1,12 +1,12 @@
 const Prompt = require('./prompt');
 const Search = require('./search');
-const BookCollection = require('./booklist');
+const ReadingList = require('./reading_list');
 
 class Menu {
     constructor() {
         this.menuChoices = ['[1]. Search books', '[2]. View your book list', '[3]. Quit']
         this.currentChoice = ''; 
-        this.bookCollection = new BookCollection(this); 
+        this.newList = new ReadingList(this); 
     }
 
     mainMenu() {
@@ -15,11 +15,11 @@ class Menu {
         this.currentChoice = newPrompt.promptUser("Please choose an option from below (enter 1, 2, or 3):", this.menuChoices); 
         
         if(this.currentChoice == 1) {
-            let newSearch = new Search(this.bookCollection, this); 
+            let newSearch = new Search(this.newList, this); 
             console.log("----------");
             newSearch.performSearch(); 
         } else if(this.currentChoice == 2) {
-            this.bookCollection.viewBooks(); 
+            this.newList.viewBooks(); 
         } else if(this.currentChoice == 3) {
             console.log('Goodbye!\n')
             return; 
