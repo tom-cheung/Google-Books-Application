@@ -23,10 +23,14 @@ Users will be prompted with the following,
 
 ## Main Menu 
 
-<img src="./img/main_menu.PNG" width="800" height="200">
+<img src="./img/main_menu.PNG" width="900" height="200">
 
 An input of 1 brings up the search menu, where the user is prompted for `title` and/or `author` input. Input must be provided for at least one of the criterias. 
 
-<img src="./img/search.PNG" width="800" height="200">
+<img src="./img/search.PNG" width="900" height="200">
+
+Once input is provided, the application queries the Google Books API and returns 5 results. 
+
+<img src="./img/search_results.PNG" width="900" height="900">
 
 
