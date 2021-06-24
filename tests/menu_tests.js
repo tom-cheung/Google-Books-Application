@@ -7,5 +7,10 @@ describe('Menu Tests', function() {
         let menu = new Menu()
 
         expect(menu).to.not.equal(undefined);
+        expect(menu.list).to.be.an('object');
+        expect(menu.search).to.be.an('object');
+        expect(menu.prompt).to.be.an('object');
+        expect(menu.menuChoices).to.be.an('array');
+        expect(menu.currentChoice).to.be.an('string');
     })
 })

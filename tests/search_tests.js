@@ -6,11 +6,18 @@ const ReadingList = require('../src/reading_list');
 
 describe('Search Tests', function() {
     it('Should create a Search object', () => {
-        let menu = new Menu();
-        let readingList = new ReadingList(menu);
-        let newSearch = new Search(readingList, menu); 
+        let newSearch = new Search(); 
 
         expect(newSearch).to.not.equal(undefined); 
         expect(newSearch.results).to.be.an('array').that.is.empty;
     });
+    it('Should save results from a search', () => {
+        let newSearch = new Search();
+
+        newSearch.results.push({id: '123', volumeInfo: {title: 'Good Book', authors: ['Good Author'], publisher: 'Good Publisher'}});
+        newSearch.results.push({id: '456', volumeInfo: {title: 'Great Book', authors: ['Great Author'], publisher: 'Great Publisher'}});
+
+        expect(newSearch.results).to.be.an('array').that.is.not.empty;
+    })
+
 })
