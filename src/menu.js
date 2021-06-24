@@ -7,7 +7,7 @@ class Menu {
         this.menuChoices = ['[1]. Search books', '[2]. View your book list', '[3]. Quit']
         this.currentChoice = ''; 
         this.search = new Search(); 
-        this.list = new ReadingList(this); 
+        this.list = new ReadingList(); 
         this.prompt = new Prompt()
     }
 
@@ -16,8 +16,7 @@ class Menu {
         this.currentChoice = this.prompt.promptUser('Please choose an option from below (enter 1, 2, or 3):', this.menuChoices); 
 
         if(this.currentChoice === '1') {
-            await this.searchInput();
-
+            await this.execSearch();
         } else if(this.currentChoice === '2') {
             let listCount = Object.values(this.list.collection).length; 
             if(listCount > 0 ) {
@@ -39,15 +38,15 @@ class Menu {
         }
     }
 
-    async searchInput() {
+    async execSearch() {
         console.log('----------');
-        console.log('Please provide a title and/or author to search by:')
+        console.log('Please provide a title and/or author to search by:\n')
         let titleInput = this.prompt.promptUser('Search by book title:');
         let authorInput = this.prompt.promptUser('Search by author:');
 
         if(titleInput === '' && authorInput === '') {
             console.log('Either title or author input is required!');
-            await this.searchInput()
+            await this.execSearch()
         } else {
             await this.search.searchBook(titleInput, authorInput);
 
@@ -55,10 +54,10 @@ class Menu {
 
             if(resultsCount > 0) {
                 this.displayResults(this.search.results); 
-                this.saveResults();
+                this.saveToList();
             } else {
                 console.log('could not find that book, please try again.')
-                this.searchInput(); 
+                this.execSearch(); 
             }
         }
     }
@@ -79,7 +78,7 @@ class Menu {
         } 
     }
 
-    saveResults() {
+    saveToList() {
         let input = this.prompt.promptUser('Enter the result # of the books you want to save, i.e. 1 2 3, OR \'quit\' to return to the main menu to view your list or perform a new search.').split(" "); 
         let uniqueIds = new Set(); 
 
@@ -94,22 +93,24 @@ class Menu {
                 }
             } 
 
+            let results = this.search.results; 
+
             if(Array.from(uniqueIds).length > 0) {
                 for(let id of uniqueIds) {
-                    if(this.list.collection[this.search.results[id].id]) {
-                        console.log(`${this.search.results[id].volumeInfo.title} has already been saved.`)
+                    if(this.list.collection[results[id].id]) {
+                        console.log(`\n${results[id].volumeInfo.title} has already been saved.\n`)
                     } else {
-                        this.list.addBook(this.search.results[id])
+                        this.list.addBook(results[id])
+                        console.log(`\nAdded ${results[id].volumeInfo.title} to your list\n`)
                     }
                 }
-                console.log('\nAdded books to your list, return to main menu to see your list\n')
-                this.saveResults(); 
+                // console.log('\nAdded books to your list, return to main menu to see your list\n')
+                this.saveToList(); 
             } else {
                 console.log('\nThe result #\'s you provided did not match the search results.\n')
-                this.saveResults(); 
+                this.saveToList(); 
             }
         }
-
     }
 
 

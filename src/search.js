@@ -4,7 +4,7 @@ const Prompt = require('./prompt');
 const APIKEY = 'AIzaSyDwWl6oDb31K5tHyKcmmlNNHe1Njh4Relg';
 
 class Search {
-    constructor(ReadingList, Menu) {
+    constructor() {
         this.results = []; 
         this.error = "";
     }

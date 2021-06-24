@@ -1,9 +1,8 @@
 const Prompt = require('./prompt'); 
 
 class ReadingList {
-    constructor(Menu) {
+    constructor() {
         this.collection = {}; 
-        this.menu = Menu; 
     }
 
     addBook(book) {
