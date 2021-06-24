@@ -10,11 +10,10 @@ describe('ReadingList Tests', function() {
 
         expect(readingList).to.not.equal(undefined);
         expect(readingList.collection).to.be.an('object').that.is.empty;
-        expect(readingList.menu).to.equal(menu);
     }),
     it('Should allow a book to be added', () => {
         let menu = new Menu();        
-        let readingList = new ReadingList(menu);
+        let readingList = new ReadingList();
         readingList.addBook({id: '123', volumeInfo: {title: 'Good Book', authors: ['Good Author'], publisher: 'Good Publisher'}});
 
         expect(readingList.collection).to.have.property("123");

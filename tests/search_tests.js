@@ -11,10 +11,6 @@ describe('Search Tests', function() {
         let newSearch = new Search(readingList, menu); 
 
         expect(newSearch).to.not.equal(undefined); 
-        expect(newSearch.titleInput).to.equal(''); 
-        expect(newSearch.authorInput).to.equal('');
         expect(newSearch.results).to.be.an('array').that.is.empty;
-        expect(newSearch.readingList).to.equal(readingList);
-        expect(newSearch.menu).to.equal(menu);
     });
 })
